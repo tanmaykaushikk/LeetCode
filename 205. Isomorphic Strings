@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        HashMap<Character,Character>smap = new HashMap<>();
+        HashMap<Character,Character>tmap = new HashMap<>();
+
+        for(int i = 0;i<s.length();i++){
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+
+            if(smap.containsKey(sChar)){
+                if(smap.get(sChar)!=tChar){
+                    return false;
+                }
+            }else{
+                if(tmap.containsKey(tChar)){
+                    return false;
+                }
+                smap.put(sChar, tChar);
+                tmap.put(tChar, sChar);
+            }
+        }
+        return true;
+    }
+}
