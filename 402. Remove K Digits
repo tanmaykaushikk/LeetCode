@@ -1,0 +1,39 @@
+class Solution {
+    public String removeKdigits(String num, int k) {
+         // If k is equal to the length of the number, we can remove all digits
+        if (k == num.length()) return "0";
+        
+        Stack<Character> stack = new Stack<>();
+        
+        // Iterate through each digit of the number
+        for (char digit : num.toCharArray()) {
+            // While k is greater than 0 and the current digit is less than the digit at the top of the stack
+            // We pop from the stack and decrease k
+            while (k > 0 && !stack.isEmpty() && stack.peek() > digit) {
+                stack.pop();
+                k--;
+            }
+            // Push the current digit onto the stack
+            stack.push(digit);
+        }
+        
+        // If there are still remaining digits to be removed, pop from the stack
+        while (k > 0) {
+            stack.pop();
+            k--;
+        }
+        
+        // Construct the smallest number from the stack
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.insert(0, stack.pop());
+        }
+        
+        // Remove leading zeros
+        while (sb.length() > 1 && sb.charAt(0) == '0') {
+            sb.deleteCharAt(0);
+        }
+        
+        return sb.toString();
+    }
+}
