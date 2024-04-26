@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Contains_Duplicate {
+    private static boolean hasDuplicate(int arr[]) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (hm.containsKey(arr[i])) {
+                return true;
+            }
+            hm.put(arr[i], 1);
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        if (hasDuplicate(arr)) {
+            System.out.println("1");
+        } else {
+            System.out.println("0");
+        }
+        sc.close();
+    }
+}
