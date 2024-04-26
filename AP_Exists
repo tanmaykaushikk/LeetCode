@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Ap_Exits {
+    private static boolean hasAp(int arr[]) {
+        Arrays.sort(arr);
+        int diff = arr[1] - arr[0];
+        for (int i = 2; i < arr.length; i++) {
+            if (arr[i] - arr[i - 1] != diff) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        if (hasAp(arr)) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+        sc.close();
+    }
+}
