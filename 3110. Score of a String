@@ -1,0 +1,11 @@
+class Solution {
+    public int scoreOfString(String s) {
+        int total = 0;
+        for(int i=1;i<s.length();i++){
+            char prev = s.charAt(i-1);
+            char curr = s.charAt(i);
+            total += Math.abs(curr-prev);
+        }
+        return total;
+    }
+}
