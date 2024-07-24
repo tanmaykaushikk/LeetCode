@@ -1,0 +1,35 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>>bigans = new ArrayList<>();
+        pp(s,new ArrayList<String>(),bigans);
+        return bigans;
+    }
+    private static boolean isPalindrome(String str){
+        int s = 0;
+        int e = str.length()-1;
+        while(s<=e){
+            if(str.charAt(s)!=str.charAt(e)){
+                return false;
+            }
+            s++;
+            e--;
+        }
+        return true;
+    }
+    private static void pp(String ques,List<String>ans,List<List<String>>bigans){
+        if(ques.length() == 0){
+            bigans.add(new ArrayList<>(ans));
+            return;
+        }else{
+            for(int i=1;i<=ques.length();i++){
+                String part = ques.substring(0,i);
+                if(isPalindrome(part)){
+                String rem = ques.substring(i);
+                ans.add(part);
+                pp(rem,ans,bigans);
+                ans.remove(ans.size()-1);
+                }
+            }
+        }
+    }
+}
