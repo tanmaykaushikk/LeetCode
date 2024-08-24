@@ -1,0 +1,45 @@
+import java.util.*;
+class MyQueue {
+    private Stack<Integer> newontop;
+    private Stack<Integer> oldontop;
+
+    public MyQueue() {
+        newontop = new Stack<>();
+        oldontop = new Stack<>();
+    }
+    
+    public void push(int x) {
+        newontop.push(x);
+    }
+    
+    public int pop() {
+        shiftstack();
+        return oldontop.pop();
+    }
+    
+    public int peek() {
+        shiftstack();
+        return oldontop.peek();
+    }
+    
+    public boolean empty() {
+        return newontop.isEmpty() && oldontop.isEmpty();
+    }
+
+    private void shiftstack(){
+        if(oldontop.isEmpty()){
+            while(!newontop.isEmpty()){
+                oldontop.push(newontop.pop());
+            }
+        }
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
